@@ -45,11 +45,10 @@ public class PistaDAO {
 	  PreparedStatement ps = null;
 	  
 	  try {
-		  ps = connection.prepareStatement("INSERT INTO Tracks (Name, State, Difficulty, MaxKarts) values(?,?,?,?)");
-		  ps.setString(1, track.getNombrePista());
-		  ps.setBoolean(2, track.getEstadoPista());
-		  ps.setString(3, track.getDificultad().toString());
-		  ps.setInt(4, track.getMaxKarts());
+		  ps = connection.prepareStatement("INSERT INTO Room (IdRoom, State, NuBed) values(?,?,?)");
+		  ps.setInt(1, track.getId());
+		  ps.setBoolean(2, track.getEstado());
+		  ps.setInt(3, track.getNuBed());
 		  ps.executeUpdate();
 	  } catch (SQLException e1) { e1.printStackTrace(); }
 

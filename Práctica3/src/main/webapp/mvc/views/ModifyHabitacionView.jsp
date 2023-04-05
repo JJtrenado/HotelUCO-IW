@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Modificar Kart</title>
+<title>Modificar Habitación</title>
 <link href="/Práctica3/mvc/views/formStyles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -65,7 +65,7 @@
 				// inserto el Html
 				miSelect1.innerHTML= htmlParaInsertar;
 				
-				const texto = "Seleccione el Kart y su Estado";
+				const texto = "Seleccione la Habitación y su Estado";
 	                document.getElementById("respuesta").innerHTML = texto;
 	    	});
     } 

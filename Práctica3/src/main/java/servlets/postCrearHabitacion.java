@@ -8,10 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import business.PistaMgr;
-import data.common.Dificultad;
 
-@WebServlet(name="crearTrack", urlPatterns="/creartrack")
-public class CrearTrack extends HttpServlet{
+@WebServlet(name="postCrearHabitacion", urlPatterns="/postCrearHabitacion")
+public class postCrearHabitacion extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -25,7 +24,7 @@ public class CrearTrack extends HttpServlet{
 			disp.forward(request, response);
 		}
 		else if(rol.equals("Administrador")) {
-			disp = request.getRequestDispatcher("/mvc/views/altaPistaView.jsp");
+			disp = request.getRequestDispatcher("/mvc/views/altaHabitacionView.jsp");
 			disp.forward(request, response);
 		}
 		else {
@@ -35,35 +34,21 @@ public class CrearTrack extends HttpServlet{
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-		String nombre = (String) request.getParameter("Nombre");
-		String estado = (String) request.getParameter("Estado");
-		String tipo = (String) request.getParameter("Tipo");
-		int max= Integer.parseInt(request.getParameter("Max"));
+		String estado = (String) request.getParameter("State");
+		int NuBed= Integer.parseInt(request.getParameter("NuBed"));
+		int IdRoom= Integer.parseInt(request.getParameter("IdRoom"));
 		Boolean state=false;
-		Dificultad dificultad=null;
 		if(estado.equals("Disponible")) {
 			state=true;
 		}
 		else if(estado.equals("Mantenimiento")) {
 			state=false;
-		}
+		}		
 		
-		if(tipo.equals("Infantil")) {
-			dificultad=Dificultad.infantil;
-			
-		}
-		else if(tipo.equals("Adultos")) {
-			dificultad=Dificultad.adultos;
-		}
-		else if(tipo.equals("Familiar")) {
-			dificultad=Dificultad.familiar;
-		}
-		
-		
-		if(PistaMgr.addTrack(nombre, state, dificultad, max)==true) {
+		if(PistaMgr.addRoom(IdRoom, state, NuBed)==true) {
 			PrintWriter out = response.getWriter();
 			response.setContentType("text/html");
-			out.println("<br><h2>Pista creada correctamente</h2>");
+			out.println("<br><h2>Habitación creada correctamente</h2>");
 			disp = request.getRequestDispatcher("/index.jsp");
 			disp.include(request, response);
 		}

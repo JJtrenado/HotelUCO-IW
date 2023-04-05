@@ -14,10 +14,9 @@ public class PistaDTO {
 	/**
    * Attributes
    */
-	private String NombrePista;
-	private boolean EstadoPista;
-	private Dificultad Dificultad;
-	private int MaxKarts;
+	private int IdRoom;
+	private boolean Estado;
+	private int NuBed;
 	
 	/**
    * Constructor without parameters
@@ -26,70 +25,42 @@ public class PistaDTO {
 
   }
 	
-	/**
-	 * Constructor with parameters
-	 * @param NombrePista The name of the pista
-	 * @param EstadoPista The state of the pista (disponible o mantenimiento)
-	 * @param Dificultad The dificulty of the pista
-	 * @param MaxKarts maximun karts that can play on the pista
-	 * @param Karts list of karts asociated to the pista
-	 */
-	public PistaDTO( String nombrePista, boolean estadoPista, Dificultad dificultad, int maxKarts) {
-		this.NombrePista = nombrePista;
-		this.EstadoPista = estadoPista;
-		this.Dificultad = dificultad;
-		this.MaxKarts = maxKarts;
+
+	public PistaDTO(int IdRoom, boolean estado, int NuBed) {
+		this.IdRoom = IdRoom;
+		this.Estado = estado;
+		this.NuBed = NuBed;
 	}
 	
 	
 	/* Getters and setters */
-	/**
-   * @return the name of the pista
-   */
-	public String getNombrePista() {
-		return NombrePista;
-	}
-	/**
-   * set the name of the pista
-   */
-	public void setNombrePista(String nombrePista) {
-		this.NombrePista = nombrePista;
-	}
+
+	  public int getId() {
+			return IdRoom;
+		}
 	/**
    * @return the state of the pista
    */
-  public Boolean getEstadoPista() {
-		return EstadoPista;
+  public Boolean getEstado() {
+		return Estado;
 	}
 	/**
    * set the name of the pista
    */
-	public void setEstadoPista(Boolean estadoPista) {
-		this.EstadoPista = estadoPista;
-	}
-	/**
-   * @return the dificulty of the pista
-   */
-	public Dificultad getDificultad() {
-		return Dificultad;
-	}
-	/**
-   * set the name of the pista
-   */
-	public void setDificultad(Dificultad dificultad) {
-		this.Dificultad = dificultad;
+	public void setEstado(Boolean Estado) {
+		this.Estado = Estado;
 	}
 	/**
    * @return maximun karts that can play on the pista
    */
-  public int getMaxKarts() {
-		return MaxKarts;
+  public int getNuBed() {
+		return NuBed;
 	}
 	/**
    * set maximun karts that can play on the pista
    */
-	public void setMaxKarts(int maxKarts) {
-		this.MaxKarts = maxKarts;
+	public void setNuBed(int NuBed) {
+		this.NuBed = NuBed;
 	}
 
 	/* Other methods */
@@ -98,7 +69,7 @@ public class PistaDTO {
    */
 	@Override
 	public String toString() {
-		return "NombrePista: " + NombrePista + "\tEstadoPista: " + EstadoPista + "\tDificultad: " + Dificultad + "\tMaxximo de Karts: " + MaxKarts;
+		return "Estado: " + Estado + "\tNumero de camas: " + NuBed;
 	}
 
 }

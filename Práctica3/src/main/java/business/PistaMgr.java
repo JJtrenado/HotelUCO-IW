@@ -17,8 +17,8 @@ public class PistaMgr {
 	 * @param kartMax the max number of karts in the track
 	 */
 
-	public static boolean addTrack(String name, boolean state, Dificultad difficulty, int kartMax) {
-		PistaDTO track = new PistaDTO(name, state, difficulty, kartMax);
+	public static boolean addRoom(int IdRoom, boolean state, int NuBed) {
+		PistaDTO track = new PistaDTO(IdRoom, state, NuBed);
 		PistaDAO.crearPista(track);
 		return true;
 	}
