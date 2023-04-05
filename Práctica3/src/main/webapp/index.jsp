@@ -157,7 +157,7 @@
 	<% }
 	else if(usuario.getRol().equals("Cliente")){
 	%>
-		<% Timestamp res = UsuarioDAO.getProximaReserva(usuario.getUsuario()); %>
+		<%-- <% Timestamp res = UsuarioDAO.getProximaReserva(usuario.getUsuario()); %>
 		<div class="container">
 			<div class="info">
 				<h2>Bienvenido <%out.println(usuario.getUsuario()); %>!</h2>
@@ -166,7 +166,7 @@
 				<p>Su próxima reserva es el: No tiene reservas.</p>
 			<% }else { %>
 				<p>Su próxima reserva es el: <%out.println(UsuarioDAO.getProximaReserva(usuario.getUsuario())); %></p>
-			<% } %>
+			<% } %> --%>
 			<section id="reservar">
 				<button><a href="/Práctica3/mvc/controllers/disconnectController.jsp">Desconectar</a></button>
 				<button><a href="/Práctica3/mvc/views/ModifyClientView.jsp">Modificar mis datos</a></button>

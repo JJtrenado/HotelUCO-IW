@@ -23,7 +23,7 @@
 	
     
     <div class="note-form">
-	    <form id="miFormulario" action="#" onsubmit="return peticion()">
+	    <form method="post" action="/Práctica3/PostReserva">
 	    	<h2>Reserva tu estancia</h2>
 		    <div id="noHabitaciones" style="color:red;"></div>
 			<div class="field">
@@ -39,7 +39,8 @@
 				<input type="number" id="numero" name="numeroPersonas" oninput="calcularMultiplicacion()" value="" required>
 			</div>
 			<p style="display:none;">
-			<input type="text" readonly name="Email" value=<%= usuario.getUsuario() %>>
+				<input type="text" readonly name="Email" value=<%= usuario.getUsuario() %>>
+				<div id="precio" style="display:none;"></div>
 			</p>
 			<br />
 			<p>El el precio para la estancia seleccionada es: <span id="resultado"></span></p>
@@ -60,6 +61,7 @@ function calcularMultiplicacion() {
 
   var resultado = dias * numero * 50;
 
+  document.getElementById("precio").innerHTML = "<input type='number' readonly name='precio' value=" + resultado + ">"
   document.getElementById("resultado").innerHTML = resultado;
 }
 </script>
