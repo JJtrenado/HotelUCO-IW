@@ -45,7 +45,7 @@ public class DBConnection {
 	    
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			this.connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i02dipea", "i02dipea", "BDPW");
+			this.connection = (Connection) DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/p92essaa", "p92essaa", "grupo4");
 			System.out.println("Database connection successfully opened!");
 		} 
 		catch (SQLException e) {

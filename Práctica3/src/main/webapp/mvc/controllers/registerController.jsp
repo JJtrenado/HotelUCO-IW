@@ -18,7 +18,7 @@
 </head>
 <body>
 	<%
-		String nextPage = "../views/RegisterView.jsp";
+		String nextPage = "../../index.jsp";
 		String nextPageMessage = null;
 		
 		String name = request.getParameter("name");
@@ -34,6 +34,7 @@
 				nextPageMessage = "";
 			}else if(email != null) { 
 			nextPageMessage = "error";
+
 			}else{
 				%>
 				<jsp:setProperty property="email" value="" name="User"/>
