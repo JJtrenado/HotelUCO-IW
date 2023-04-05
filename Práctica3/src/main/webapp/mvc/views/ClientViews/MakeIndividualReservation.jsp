@@ -28,65 +28,42 @@
 		    <div id="noHabitaciones" style="color:red;"></div>
 			<div class="field">
 				<label for="Date">Fecha Inicial: </label>
-				<input type="date" name="fechaInicio" value="" required>
+				<input type="date" id="fechaInicio" name="fechaInicio" oninput="calcularMultiplicacion()" value="" required>
 			</div>
 			<div class="field">
 				<label for="Date">Fecha Final: </label>
-				<input type="date" name="fechaFinal" value="" required>
+				<input type="date" id="fechaFinal" name="fechaFinal" oninput="calcularMultiplicacion()" value="" required>
 			</div>
 			<div class="field">
 				<label for="Date">Nº Personas: </label>
-				<input type="number" name="numeroPersonas" value="" required>
+				<input type="number" id="numero" name="numeroPersonas" oninput="calcularMultiplicacion()" value="" required>
 			</div>
 			<p style="display:none;">
 			<input type="text" readonly name="Email" value=<%= usuario.getUsuario() %>>
 			</p>
 			<br />
-			<button type="submit">Pedir Precio</button>
+			<p>El el precio para la estancia seleccionada es: <span id="resultado"></span></p>
+			<button type="submit">Reservar</button>
 			<br />
 		</form>
 	</div>
-	
-	<div class="note-form" id="precio">
-	 
-	</div>
-	
-	<script>
-	  function peticion() {
-		const formulario = document.getElementById('miFormulario');
-	   	
-	   	const searchParams = new URLSearchParams();
-	   	searchParams.set('fechaInicio', formulario.elements.fechaInicio.value);
-	   	searchParams.set('fechaFinal', formulario.elements.fechaFinal.value);
-	   	searchParams.set('numeroPersonas', formulario.elements.numeroPersonas.value);
-	   	searchParams.set('Email', formulario.elements.Email.value);
 
-	   	const url = "/Práctica3/getPrecio?" + searchParams.toString();
-		//console.log(url);
-	   	fetch(url)
-	      .then(response => response.text())
-	      .then(data => {
-	    	  if(data == ''){
-		        	document.getElementById("noHabitaciones").innerHTML = "No hay habitaciones disponibles"
-		        }
-	    	// Procesar la respuesta del servlet
-              var substrings = data.split(",");
-	                
-				// Obtener una referencia al select del formulario con un ID de "miSelect"
-				var precio = document.getElementById("precio");
-			
-				// Guardo en una string todo el html que quiero insertar
-				var htmlParaInsertar = "";
-				for (var i = 0; i < substrings.length; i++) {
-					 htmlParaInsertar = htmlParaInsertar + "<option>" + substrings[i] + "</option>";
-				}
-				
-				// inserto el Html
-				precio.innerHTML= htmlParaInsertar;
-	  	});
-	    return false;
-	  }
-	</script>
+
+<script>
+function calcularMultiplicacion() {
+  var fecha1 = new Date(document.getElementById("fechaInicio").value);
+  var fecha2 = new Date(document.getElementById("fechaFinal").value);
+  var numero = document.getElementById("numero").value;
+
+  var diferencia = fecha2.getTime() - fecha1.getTime();
+  var dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+
+  var resultado = dias * numero * 50;
+
+  document.getElementById("resultado").innerHTML = resultado;
+}
+</script>
+
     
 </body>
 </html>
