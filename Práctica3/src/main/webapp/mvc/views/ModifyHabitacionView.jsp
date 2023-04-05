@@ -20,7 +20,7 @@
 		}
 	%>
 	<div class="note-form">
-		<form method="post" action="/Práctica3/postModificarHabitacion">
+		<form method="post" action="/Práctica3/PostModifyHabitacion">
 		    <h2 id="respuesta">Espere mientras carga</h2>
 		    <div id="noHabitaciones" style="color:red;"></div>
 			<div class="field">

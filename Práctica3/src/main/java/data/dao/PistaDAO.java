@@ -322,7 +322,7 @@ public class PistaDAO {
 		return tracks;
   }
 
-  public static ArrayList<String> listAllTrack(){
+  public static ArrayList<String> listAllRooms(){
 	  ArrayList<String> track = new ArrayList<String>();
 		
 		DBConnection dbConnection = new DBConnection();
@@ -340,7 +340,7 @@ public class PistaDAO {
 		PreparedStatement ps = null;
 		
 		try {
-			ps = connection.prepareStatement("SELECT * FROM Tracks ORDER BY Name ");
+			ps = connection.prepareStatement("SELECT * FROM Room ORDER BY IdRoom ");
 		} catch (SQLException e1) { e1.printStackTrace(); }
 		
 		ResultSet rs = null;
@@ -348,7 +348,7 @@ public class PistaDAO {
 		try {
 			rs = (ResultSet) ps.executeQuery();
 			while(rs.next()) {
-				track.add(rs.getString("Name"));
+				track.add(rs.getString("IdRoom"));
 			}
 		} catch (SQLException e) { e.printStackTrace(); }
 		    
@@ -394,7 +394,7 @@ public class PistaDAO {
 		return track;
   }
   
-  public static void ModifyStateTrack(String name, String state) {
+  public static void ModifyStateTrack(int id, String state) {
 		DBConnection dbConnection = new DBConnection();
 		Connection connection = null;
 		
@@ -409,8 +409,8 @@ public class PistaDAO {
 		PreparedStatement ps = null;
 		
 		try {
-			ps = connection.prepareStatement("UPDATE Tracks set State = ? WHERE Name = ?");
-			ps.setString(2, name);
+			ps = connection.prepareStatement("UPDATE Room set State = ? WHERE IdRoom = ?");
+			ps.setInt(2, id);
 			if(state.equals("Disponible")) { ps.setInt(1, 1); }
 			else { ps.setInt(1, 0); }
 			ps.executeUpdate();

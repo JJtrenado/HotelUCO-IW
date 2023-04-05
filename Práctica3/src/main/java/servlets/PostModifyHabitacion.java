@@ -13,14 +13,14 @@ import data.dao.PistaDAO;
 /**
  * Servlet implementation class PostModifyTrack
  */
-@WebServlet("/PostModifyTrack")
-public class PostModifyTrack extends HttpServlet {
+@WebServlet("/PostModifyHabitacion")
+public class PostModifyHabitacion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PostModifyTrack() {
+    public PostModifyHabitacion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,11 +37,11 @@ public class PostModifyTrack extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String track = request.getParameter("Nombre");
-		String state = request.getParameter("Estado");
+		int id = Integer.parseInt(request.getParameter("ID"));
+		String state = request.getParameter("estado");
 		response.setContentType("text/html");
 		
-		PistaDAO.ModifyStateTrack(track, state);
+		PistaDAO.ModifyStateTrack(id, state);
 		
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}

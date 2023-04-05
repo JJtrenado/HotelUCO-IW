@@ -17,14 +17,14 @@ import data.dao.PistaDAO;
 /**
  * Servlet implementation class GetTracks
  */
-@WebServlet("/GetTracks")
-public class GetTracks extends HttpServlet {
+@WebServlet("/getHabitaciones")
+public class getHabitaciones extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetTracks() {
+    public getHabitaciones() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +33,7 @@ public class GetTracks extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<String> track = PistaDAO.listAllTrack();
+		ArrayList<String> track = PistaDAO.listAllRooms();
 		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();

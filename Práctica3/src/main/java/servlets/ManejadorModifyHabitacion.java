@@ -11,7 +11,7 @@ import business.KartMgr;
 import data.common.EstadoKart;
 
 @WebServlet(name="ManejadorModifyHabitacion", urlPatterns="/ManejadorModifyHabitacion")
-public class ManejadorModifyKart extends HttpServlet{
+public class ManejadorModifyHabitacion extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	
