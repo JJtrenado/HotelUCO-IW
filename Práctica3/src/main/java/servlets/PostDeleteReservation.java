@@ -1,12 +1,18 @@
 package servlets;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import data.common.DBConnection;
 import data.dao.PistaDAO;
 import data.dao.ReservaDAO;
 
@@ -37,12 +43,25 @@ public class PostDeleteReservation extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String parametro = request.getParameter("ID");
-		String[] datos = parametro.split(" ----- ");
+		String email = request.getParameter("Email");
 
 		response.setContentType("text/html");
+		String str = email.toString();
+		DBConnection dbConnection = new DBConnection();
+		Connection connection = null;
 		
-		ReservaDAO.eliminarReserva(Integer.parseInt(datos[0]));
+		try {
+			connection = dbConnection.getConnection();
+		} catch (FileNotFoundException e) { e.printStackTrace(); } catch (IOException e) { e.printStackTrace(); }
+		
+		PreparedStatement ps = null;
+		
+		try {
+			ps = connection.prepareStatement("DELETE FROM Reservations WHERE Email = ?");
+			ps.setString(1, str);
+			ps.executeUpdate();
+		} catch (SQLException e) { e.printStackTrace();
+	}
 		
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}

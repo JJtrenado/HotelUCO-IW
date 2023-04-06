@@ -1,7 +1,11 @@
 package servlets.clientservlets;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import data.common.DBConnection;
 import data.dao.ReservaDAO;
 
 /**
@@ -38,23 +43,25 @@ public class PostEliminarReservas extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String data[] = request.getParameter("ID").split(" ------- ");
-		int id = Integer.parseInt(data[0]);
-		
+		String email = request.getParameter("Email");
+
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();	
+		String str = email.toString();
+		DBConnection dbConnection = new DBConnection();
+		Connection connection = null;
 		
-		if(ReservaDAO.compruebaReservaBono(id) == true) {
-			int idBono = ReservaDAO.getIdBonoReserva(id);
-			ReservaDAO.eliminarReserva(id);
-			ReservaDAO.DeleteSessionBono(idBono);
-			
-			if(ReservaDAO.getSessionBono(idBono) == 0) {
-				ReservaDAO.deleteBono(idBono);
-			}
-		}else {
-			ReservaDAO.eliminarReserva(id);
-		}
+		try {
+			connection = dbConnection.getConnection();
+		} catch (FileNotFoundException e) { e.printStackTrace(); } catch (IOException e) { e.printStackTrace(); }
+		
+		PreparedStatement ps = null;
+		
+		try {
+			ps = connection.prepareStatement("DELETE FROM Reservations WHERE Email = ?");
+			ps.setString(1, str);
+			ps.executeUpdate();
+		} catch (SQLException e) { e.printStackTrace();
+	}
 		
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}

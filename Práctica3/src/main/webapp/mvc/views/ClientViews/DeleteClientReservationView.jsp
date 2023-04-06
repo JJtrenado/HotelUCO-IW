@@ -24,9 +24,9 @@
 		<form method="post" action="/Práctica3/PostEliminarReservas">
 		    <h2 id="respuesta">Espere mientras carga</h2>
 			<div class="field">
-				<label for="ID">Fecha de la reserva: </label>
+				<label for="ID">Reserva: </label>
 				<div id="noReservas" style="color:red;"></div>
-				<select id="miSelect1" name="fechaInicio">
+				<select id="miSelect1" name="datos">
 				</select>
 			</div>
 			<p style="display:none;">

@@ -149,7 +149,7 @@
 			<section id="reservar">
 				<button><a href="/Práctica3/mvc/controllers/disconnectController.jsp">Desconectar</a></button>
 				<button><a href="/Práctica3/mvc/views/ModifyAdminView.jsp">Modificar Datos</a></button>
-				<button><a href="/Práctica3/crearhabitacion?rol=Administrador">Crear habitación</a></button>
+				<button><a href="/Práctica3/postCrearHabitacion?rol=Administrador">Crear habitación</a></button>
 				<button><a href="/Práctica3/ManejadorModifyHabitacion?rol=Administrador">Modificar habitación</a></button>
 				<button><a href="/Práctica3/ManejadorDeleteReservation?rol=Administrador">Eliminar Reserva</a></button>
 			</section>
@@ -160,7 +160,7 @@
 		<% String res = UsuarioDAO.getProximaReserva(usuario.getUsuario()); %>
 		<div class="container">
 			<div class="info">
-				<h2>Bienvenido <%out.println(usuario.getUsuario()); %>!</h2>
+				<h2>Bienvenido <%out.println(usuario.getUsuario()); %></h2>
 			</div>
 			<% if(res == null) { %>
 				<p>Su próxima reserva es el: No tiene reservas.</p>

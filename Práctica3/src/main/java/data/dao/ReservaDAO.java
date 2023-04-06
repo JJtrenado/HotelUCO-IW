@@ -720,23 +720,6 @@ public class ReservaDAO {
 		return res;
 	}
 
-	public static void eliminarReserva(int id) {
-		DBConnection dbConnection = new DBConnection();
-		Connection connection = null;
-		
-		try {
-			connection = dbConnection.getConnection();
-		} catch (FileNotFoundException e) { e.printStackTrace(); } catch (IOException e) { e.printStackTrace(); }
-		
-		PreparedStatement ps = null;
-		
-		try {
-			ps = connection.prepareStatement("DELETE FROM Reservations WHERE Id = ?");
-			ps.setInt(1, id);
-			ps.executeUpdate();
-		} catch (SQLException e) { e.printStackTrace(); }
-	}
-	
 	public static ArrayList<ArrayList<String>> listarReservaFechas(Timestamp inicio, Timestamp fin, String Email){
 		ArrayList<ArrayList<String>> res = new ArrayList<ArrayList<String>>();
 		int i = 0;
