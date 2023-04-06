@@ -473,8 +473,8 @@ public class UsuarioDAO {
 		  return array;
 	}
 
-	public static Timestamp getProximaReserva(String email) {
-	  Timestamp proxima = null;
+	public static String getProximaReserva(String email) {
+	  String proxima = null;
 	
 	  DBConnection dbConnection = new DBConnection();
 	  Connection connection = null;
@@ -492,21 +492,27 @@ public class UsuarioDAO {
 	  
 	  PreparedStatement ps = null;
 	  
-	  try {
-		  ps = connection.prepareStatement(cons.getProperty("CheckFirstReservation"));
-		  ps.setString(1, email);
-	  } catch (SQLException e) { e.printStackTrace(); }
-	  	  
-	  ResultSet rs = null;
-	  
-	  try {
-		  rs = (ResultSet) ps.executeQuery();
-		  if(rs.next()) {
-			  proxima=rs.getTimestamp(1);
-		  }
-	  } catch (SQLException e) { e.printStackTrace(); }
-	
-	return proxima;
+		try {
+			ps = connection.prepareStatement("SELECT * FROM Reservations WHERE Email = ?");
+			ps.setString(1, email);
+			
+		} catch (SQLException e) { e.printStackTrace(); }
+
+		ResultSet rs = null;
+		
+		try {
+			rs = (ResultSet) ps.executeQuery();
+			while(rs.next()) {
+				ArrayList<String> var = new ArrayList<String>();
+				proxima = rs.getString("StartDate");
+				proxima = proxima.substring(0, 10);
+				
+			}
+		} catch (SQLException e) { e.printStackTrace(); }
+
+		dbConnection.closeConnection();
+		
+		return proxima;
 }
 
 }

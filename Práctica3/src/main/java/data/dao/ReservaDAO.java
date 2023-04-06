@@ -830,9 +830,9 @@ public class ReservaDAO {
 		PreparedStatement ps = null;
 		
 		try {
-			ps = connection.prepareStatement("SELECT * FROM Reservations WHERE Email = ? AND Date >= ?");
+			ps = connection.prepareStatement("SELECT * FROM Reservations WHERE Email = ?");
 			ps.setString(1, email);
-			ps.setTimestamp(2, SystemManager.SumaRestaFecha(new Timestamp(new java.util.Date().getTime()), 1440, "s"));
+			
 		} catch (SQLException e) { e.printStackTrace(); }
 
 		ResultSet rs = null;
@@ -841,10 +841,14 @@ public class ReservaDAO {
 			rs = (ResultSet) ps.executeQuery();
 			while(rs.next()) {
 				ArrayList<String> var = new ArrayList<String>();
-				var.add(String.valueOf(rs.getInt("Id")));
-				var.add(rs.getString("Track"));
-				var.add(rs.getString("Date"));
-				var.add(String.valueOf(rs.getInt("IdBono")));
+				String date = "Inicio " + rs.getString("StartDate");
+				date = date.substring(0, 17);
+				var.add(date);
+				date = "Fin " + rs.getString("EndDate");
+				date = date.substring(0, 14);
+				var.add(date);
+				var.add(String.valueOf(rs.getInt("NuPeople")) + " personas");
+				var.add(String.valueOf(rs.getInt("Precio")) + " Euros");
 				res.add(var);
 			}
 		} catch (SQLException e) { e.printStackTrace(); }
