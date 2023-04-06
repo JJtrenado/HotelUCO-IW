@@ -7,8 +7,8 @@ body {
 }
 
 img {
+	height: 15rem;
     max-width: 100%;
-    max-height: 10rem;
     object-fit: cover;
 }
 
@@ -44,10 +44,10 @@ nav a:hover {
 
 /* Hero section */
 #hero {
+	padding-top: 10rem;
 	color: white;
 	height: 20rem;
     background-color: #f4f4f4;
-    padding: 3rem;
     text-align: center;
     background: center / cover no-repeat url("mvc/public/hotel.jpg");
     line-height: 0.5;
@@ -81,12 +81,14 @@ nav a:hover {
 #descripcion {
     text-align: center;
     align-items: center;
-    padding: 2rem;
 }
 
 #descripcion div{
-    text-align: left;
+	padding: 2rem;
+	background-color: #E7E9EB;
+	text-align: left;
 	display: flex;
+	flex-wrap:wrap;
     justify-content: space-around;
 }
 

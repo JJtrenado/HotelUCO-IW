@@ -5,9 +5,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Crear Habitación</title>
-<link href="/Práctica3/mvc/views/formStyles.css" rel="stylesheet" type="text/css">
+<link href="/Práctica3/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
+    <section id="hero">
+        <h1>HotelUCO</h1>
+        <h2>Tu Hotel Universitario. Reserva tu habitación</h2>
+    </section>
 	<%
 		if(request.getParameter("error") != null) {
 	%>
