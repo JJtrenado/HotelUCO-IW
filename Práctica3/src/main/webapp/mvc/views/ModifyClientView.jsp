@@ -38,19 +38,34 @@
 					</p>
 					
 					<label for="email">Parámetro a modificar:</label>
-					<select name="menu" required>
+					<select name="menu" required id="opcion" onchange="cambiarCampo()">
 		  				<option>Nombre</option>
 		  				<option>Password</option>
-		  				<option>Fecha de nacimiento (format DD-MM-YYYY)</option>
+		  				<option>Fecha de nacimiento</option>
 					</select>
 					
 					<label for="nuevo">Nuevo parámetro: </label>
-					<input type="text" name="nuevo" value="" required>
+    				<input type="text" id="nuevo" name="nuevo" value="" required>
 				</div>
-				<br /><input type="submit" value="Acceder">
+				
+				<br /><input type="submit" value="Modificar">
 			</form>
 			</div>
 	<% } %>
 		
 </body>
+
+	<script>
+	function cambiarCampo() {
+		  var opcion = document.getElementById("opcion").value;
+		  var campo = document.getElementById("nuevo");
+		  
+		  if (opcion === "Fecha de nacimiento") {
+		    campo.type = "date";
+		  } else {
+		    campo.type = "text";
+		  }
+		}
+	</script>
+
 </html>

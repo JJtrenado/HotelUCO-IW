@@ -32,7 +32,7 @@
 			if(UsuarioDAO.altaUsuario(new UsuarioDTO(name, password, SystemManager.StringToDateSQL(fechaFormateada), email, rol)) == true) {
 				nextPage = "../../index.jsp";
 				nextPageMessage = "";
-			}else if(email != null) { 
+			}else if(email == null) { 
 			nextPageMessage = "error";
 
 			}else{
@@ -46,7 +46,7 @@
 </body>
 </html>
 <%
-	if(email != null) {
+	if(email == null) {
 %>
 <jsp:forward page="<%=nextPage%>">
 	    <jsp:param name="error" value="<%=nextPageMessage%>"/>

@@ -31,7 +31,7 @@
 				UsuarioDAO.modPassUser(user);
 				nextPage = "../../index.jsp";
 			}
-			else if(opcion.equals("Fecha de nacimiento (format DD-MM-YYYY)")){
+			else if(opcion.equals("Fecha de nacimiento")){
 				valor = valor + " 00:00:00";
 				user.setBirthDate(SystemManager.StringToDateSQL(valor));
 				UsuarioDAO.modBirhtUser(user);
