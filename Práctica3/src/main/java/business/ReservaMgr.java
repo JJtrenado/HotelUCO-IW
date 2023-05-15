@@ -11,24 +11,10 @@ import data.common.reservationfactory.*;
 import data.common.reservationtypes.*;
 import data.common.DBConnection;
 import data.common.Dificultad;
-/***
- * A handler that helps to create reservations
- * @author Antonio Díaz Pérez
- *
- */
+
 public class ReservaMgr {
 
-	/***
-	 * A function to add a child reservation
-	 * @param mail the email of the adult that made the reservation
-	 * @param date the date for the reservation
-	 * @param lenght the length of the reservation
-	 * @param track the track for the reservation
-	 * @param type the type of reservation
-	 * @param child the number of children in the reservation
-	 * @param idbono the id of the reservation bono
-	 * @return
-	 */
+
 	
 	public static void addReservaChild(String mail, Timestamp date1, Timestamp date2, int NuPeople, int Precio) {
 	    DBConnection dbConnection = new DBConnection();

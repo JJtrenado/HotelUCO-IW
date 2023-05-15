@@ -1,14 +1,11 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import business.KartMgr;
-import data.common.EstadoKart;
 
 @WebServlet(name="ManejadorModifyHabitacion", urlPatterns="/ManejadorModifyHabitacion")
 public class ManejadorModifyHabitacion extends HttpServlet{

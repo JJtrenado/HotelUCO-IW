@@ -6,17 +6,9 @@ import data.common.Dificultad;
 
 
 
-/**
-* A class to represent a Reserva
-* @author Antonio Diaz Barbancho 
-* @version 09/10/2022
-*/
-
 public abstract class ReservaDTO {
 	
-	/* Atrubutes */
-		
-	
+
 	protected String email;
 	protected Timestamp fecha;
 	protected int duracion;
@@ -65,10 +57,7 @@ public abstract class ReservaDTO {
 	{
 		return duracion;
 	}
-	
-	/**
-   * @return the name of the pista
-   */
+
 	
 	public String getPista()
 	{
@@ -99,11 +88,7 @@ public abstract class ReservaDTO {
    * @return the number of the bond
    */
 	
-	
-	/**
-   * @return the Dificultad of Pista
-   */
-	
+
 	public Dificultad getType() {
 		return trackType;
 	}
@@ -160,29 +145,15 @@ public abstract class ReservaDTO {
 	}
 	
 	
-	/**
-   * set the Dificultad
-   @param tipo new tipo 
-   */
-	
-	public void setType(Dificultad tipo) {
-		trackType = tipo;
-	}
-	
-	/**
-	 * Method for print information of the class Reserva
-   * @return the information of the Reserva
-   */
+
+
 	public String toString() 
 	{
 		return "Datos de la reserva:\n"+"ID usuario: "+email+" "+"Fecha de reserva: "+fecha+" "+"Duracion de la reserva: "+duracion+" "+
 	"Pista: "+pista+" "+"Precio total de la reserva: "+precio+" "+"Descuento: "+descuento;
 	}
 
-	/**
-   * set the Pista
-   @param pista2 new pista 
-   */
+
 	
 	public void setPista(String pista2) {
 		pista = pista2;

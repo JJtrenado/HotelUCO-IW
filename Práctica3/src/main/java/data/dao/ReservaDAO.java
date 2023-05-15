@@ -25,12 +25,6 @@ import data.common.reservationtypes.*;
 
 
 
-/**
- * This class manages the Reserva class
- * @author Antonio Diaz Barbancho
- * @version 09/10/2022
- */
-
 public class ReservaDAO {
 	
 	static ConcreteBonusReservationFactory bonusReservationGestor = new ConcreteBonusReservationFactory();
@@ -246,43 +240,7 @@ public class ReservaDAO {
 		return res;
 	}
 		
-	public static void elegirPista(Dificultad type, int people){
-		
-		DBConnection dbConnection = new DBConnection();
-		Connection connection = null;
-		
-		try {
-			connection = dbConnection.getConnection();
-		} catch (FileNotFoundException e) { e.printStackTrace(); } 
-		  catch (IOException e) { e.printStackTrace(); }
-		
-		  
-		PreparedStatement ps = null;
-		
-		try {
-			ps = connection.prepareStatement("SELECT * FROM Tracks WHERE Difficulty = ?");
-			ps.setString(1, type.toString());
-		} catch (SQLException e) { e.printStackTrace(); }
-		
-		ResultSet rs = null;
-		
-		try {
-			rs = (ResultSet) ps.executeQuery();
-			while(rs.next()) {
-				
-				PistaDTO track = new PistaDTO(rs.getString("Name"), rs.getBoolean("State"), Dificultad.valueOf(rs.getString("Difficulty")), rs.getInt("MaxKarts"));
-				Statement stmt = connection.createStatement();
-				ResultSet rs_2 = (ResultSet) stmt.executeQuery(cons.getProperty("GetKartTrack") + "'" + rs.getString("Name") + "'");
-				rs_2.next();
-				
-				if(people <= rs_2.getInt(1)) {
-					System.out.println(track.toString());
-				}	
-			}
-		} catch (SQLException e) { e.printStackTrace(); }
-		
-		dbConnection.closeConnection();
-	}
+	
 
 	public static int CompruebaBono(String mail, int idbono, Dificultad type) {
 		DBConnection dbConnection = new DBConnection();

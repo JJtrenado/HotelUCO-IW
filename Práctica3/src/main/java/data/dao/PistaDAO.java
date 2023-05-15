@@ -14,24 +14,12 @@ import com.mysql.jdbc.ResultSet;
 
 import business.PistaDTO;
 import data.common.*;
-/**
- * This class manages the pista class
- * @author Juan José Trenado Zafra
- * @version 06/10/2022
- */
+
 public class PistaDAO {
-  /**
-   * Constructor without parameters
-   */
+
   public PistaDAO(){
   }
 
-  /**
-   * creates a pista
- * @throws IOException 
- * @throws SQLException 
- * @throws FileNotFoundException 
-   */
   public static void crearPista(PistaDTO track){
 	  
 	  DBConnection dbConnection = new DBConnection();
@@ -55,9 +43,6 @@ public class PistaDAO {
 	  dbConnection.closeConnection();
   }
 
-  /**
-   * Check a track
-   */
   public static boolean comprobarExistenciaPista(String name){
 	  boolean ret = false;
 	  
@@ -99,13 +84,6 @@ public class PistaDAO {
 	  return ret;
 }
 
-  /**
-   * asociates an avaliable kart to a pista
-   * @return true if the kart can be asociated
- * @throws IOException 
- * @throws FileNotFoundException 
- * @throws SQLException 
-   */
   public static int asociarKartAPistaDisponible(int kart, String track){
 	  int ret = 2;
 	  
@@ -126,7 +104,6 @@ public class PistaDAO {
 			  ps.setString(1, track);
 			  ps.setInt(2, kart);
 			  
-			  // Lo alamcenamos en la base de datos
 			  ps.executeUpdate();
 			  ret = 1;
 		  } catch (SQLException e) { e.printStackTrace(); }
@@ -184,50 +161,7 @@ public class PistaDAO {
 	  return bool;
   }
 
-/**
-   * lists pistas that are on manteniance
- * @throws IOException 
- * @throws FileNotFoundException 
- * @throws SQLException 
-   */
-  public static ArrayList<String> listarPistasMantenimiento(){
-	  ArrayList<String> tracks = new ArrayList<String>();
-	  
-	  DBConnection dbConnection = new DBConnection();
-	  Connection connection = null;
-	  
-	  try {
-		  connection = dbConnection.getConnection();
-	  } catch (IOException e) { e.printStackTrace(); }
 
-	  
-	  PreparedStatement ps = null;
-	  
-	  try {
-		  ps = connection.prepareStatement("SELECT * FROM Tracks WHERE State = 0");
-	  } catch (SQLException e) { e.printStackTrace(); }
-	  
-	  ResultSet rs = null;
-	  
-	  try {
-		  rs = (ResultSet) ps.executeQuery();
-		  while(rs.next()) {
-			  PistaDTO track = new PistaDTO(rs.getString("Name"), rs.getBoolean("State"), Dificultad.valueOf(rs.getString("Difficulty")), rs.getInt("MaxKarts"));
-			  tracks.add(track.toString());
-		  }
-	  } catch (SQLException e) { e.printStackTrace(); }
-
-	  dbConnection.closeConnection();
-	  return tracks;
-  }
-
-// Dado un número de karts y tipo de pista, devolver el conjunto de pistas que estén
-// libres (no reservadas ni en mantenimiento) y tengan al menos ese número de karts
-// asociados.
-  /**
-   * Dado un número de karts y tipo de pista, devolver el conjunto de pistas que estén libres (no reservadas ni en mantenimiento) y tengan al menos ese número de karts asociados.
-   * @return pistas that meet the requirements
-   */
   public static void pistasLibresConXKarts(int nKarts, Dificultad dificultad){
 
 
@@ -239,7 +173,6 @@ public class PistaDAO {
 	  } catch (FileNotFoundException e) { e.printStackTrace(); } catch (IOException e) { e.printStackTrace(); }
 
 	  
-	  // Lo primero es obtener aquellas pistas que no esten en mantenimiento y con la dificultad especificada
 	  PreparedStatement ps = null;
 	  
 	  try {
@@ -257,7 +190,6 @@ public class PistaDAO {
 	  
 	  try {
 		while(rs.next()) {
-			  // Ahora obtenemos cuantos Kart tiene las pistas que hemos obtenido en la consulta
 			  Statement stmt_kart = null;
 			  
 			  try {
